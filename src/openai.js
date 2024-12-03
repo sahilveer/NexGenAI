@@ -1,10 +1,9 @@
 const { Configuration, OpenAIApi } = require('openai');
-const apiKey = "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";
-const configuration = new Configuration({ apiKey });
+const configuration = new Configuration({apiKey: "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"});
 const openai = new OpenAIApi(configuration);
 
 export async function sendMsgToOpenAI(message) {
-    const response = await openai.createCompletion({
+    const res = await openai.createCompletion({
         model: 'text-davinci-003',
         prompt: message,
         temperature: 0.7,
@@ -13,5 +12,6 @@ export async function sendMsgToOpenAI(message) {
         frequency_penalty: 0,
         presence_penalty: 0
     });
-    return response.data.choices[0].text;
+
+    return res.data.choices[0].text;
 }
